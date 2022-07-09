@@ -7,10 +7,12 @@ import { AppButton } from '../components/ui/AppButton';
 import { Theme } from '../Theme';
 import { TodoContext } from '../context/todo/todoContext';
 import { ScreenContext } from '../context/screen/screenContext';
+import { AppLoader } from '../components/ui/AppLoader';
 
 export const TodoScreen = () => {
     const [modal, setModal] = useState(false);
-    const { uppdateTitle, removeTodo, todos } = useContext(TodoContext);
+    const { uppdateTitle, removeTodo, todos, loading } =
+        useContext(TodoContext);
     const { todoId, changeScreen } = useContext(ScreenContext);
 
     const todo = todos.find((todo) => todo.id === todoId);
@@ -19,6 +21,10 @@ export const TodoScreen = () => {
         uppdateTitle(title, todo.id);
         setModal(false);
     };
+
+    if (loading) {
+        return <AppLoader />;
+    }
 
     return (
         <View>
