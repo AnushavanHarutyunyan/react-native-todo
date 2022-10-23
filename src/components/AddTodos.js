@@ -6,7 +6,7 @@ import { Theme } from '../Theme';
 export const AddTodos = (props) => {
     const [state, setState] = useState('');
 
-    const addHandler = () => {
+    const addHandler = async () => {
         if (state) {
             props.onChanger(state.trim());
             setState('');
